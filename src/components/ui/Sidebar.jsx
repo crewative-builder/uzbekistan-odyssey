@@ -1,47 +1,37 @@
-import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
 import { X, Globe } from "lucide-react";
 import appStore from "../../store/appStore";
-import placesData from "../../data/places.json"; // Re-use the data
+import placesData from "../../data/places.json";
 
 const Sidebar = () => {
-  const navigate = useNavigate();
-  const { id } = useParams(); // Get the ID from the URL (/place/:id)
   const { selectedPlaceId, closeSidebar } = appStore();
 
-  // Find the place data using the ID from the store/URL
-  const place = placesData.find((p) => p.id === (selectedPlaceId || id));
+  const place = placesData.find((p) => p.id === selectedPlaceId);
 
-  // If no place is found or sidebar is somehow opened incorrectly, close it
-  useEffect(() => {
-    if (!place) {
-      closeSidebar();
-      navigate("/");
-    }
-  }, [place, closeSidebar, navigate]);
+  // CSS class to control the slide animation (using Tailwind's transitions)
+  const sidebarClass = `
+    fixed top-0 right-0 h-full w-96 bg-slate-900/95 backdrop-blur-sm shadow-2xl z-20 
+    transition-transform duration-300
+    ${selectedPlaceId ? "translate-x-0" : "translate-x-full"}
+  `;
 
-  if (!place) return null; // Don't render if data is missing
-
-  const handleClose = () => {
-    closeSidebar();
-    navigate("/"); // Navigate back to the main URL
-  };
+  if (!place) return null;
 
   return (
-    <div className="fixed top-0 right-0 h-full w-96 bg-slate-900/95 backdrop-blur-sm shadow-2xl z-20 transition-transform duration-300 transform translate-x-0">
+    <div className={sidebarClass}>
       <div className="p-6 h-full flex flex-col">
         {/* Header and Close Button */}
         <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-700">
           <h2 className="text-3xl font-serif text-amber-300">{place.name}</h2>
           <button
-            onClick={handleClose}
+            onClick={closeSidebar}
             className="text-slate-400 hover:text-white p-1 rounded-full hover:bg-slate-700 transition"
           >
             <X size={24} />
           </button>
         </div>
 
-        {/* Image Placeholder (Future) */}
+        {/* Image Placeholder */}
         <div className="w-full h-48 bg-slate-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
           <Globe size={64} className="text-slate-600" />
         </div>
