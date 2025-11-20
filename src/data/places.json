@@ -1,0 +1,26 @@
+[
+  {
+    "id": "samarkand-registan",
+    "name": "Registan Square",
+    "coordinates": [69.2562, 39.6542],
+    "description": "The heart of the ancient Silk Road, featuring three magnificent madrasahs.",
+    "keywords": ["madrasah", "silk road", "history", "Uzbekistan"],
+    "image": "/assets/registan-thumb.webp"
+  },
+  {
+    "id": "bukhara-kalyan",
+    "name": "Kalyan Minaret & Mosque",
+    "coordinates": [64.4173, 39.7766],
+    "description": "Known as the Tower of Death, this minaret dominates Bukhara's skyline.",
+    "keywords": ["minaret", "bukhara", "mosque", "islamic"],
+    "image": "/assets/kalyan-thumb.webp"
+  },
+  {
+    "id": "khiva-ichan",
+    "name": "Ichan Kala (Khiva Old City)",
+    "coordinates": [60.3601, 41.3789],
+    "description": "The entirely preserved inner city, enclosed by thick mud walls.",
+    "keywords": ["old city", "fortress", "khiva", "desert"],
+    "image": "/assets/ichankala-thumb.webp"
+  }
+]
